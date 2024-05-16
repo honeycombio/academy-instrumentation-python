@@ -7,7 +7,9 @@ services:
     ports:
       - "10115:10114"
     environment:
-      - MY_SERVICE=backend-for-frontend
+      - OTEL_EXPORTER_OTLP_ENDPOINT
+      - OTEL_EXPORTER_OTLP_HEADERS
+      - OTEL_SERVICE_NAME=backend-for-frontend
 
   meminator:
     build:
