@@ -2,7 +2,6 @@
 import os
 import uuid
 import requests
-# from opentelemetry import trace
 
 def download_image(url):
     # Send a GET request to the URL
@@ -17,23 +16,22 @@ def download_image(url):
         print(f"Image downloaded successfully and saved as {filename}")
         return filename
     else:
-        # trace.get_current_span().set_attribute("app.meminate.download.error", response.status_code) #INSTRUMENTATION: add important errors
         return os.path.abspath('tmp/BusinessWitch.png')
 
 def generate_random_filename(input_filename):
     # Extract the extension from the input filename
     extension = get_file_extension(input_filename)
-    
+
     # Generate a UUID and convert it to a string
     random_uuid = uuid.uuid4()
     # Convert UUID to string and remove dashes
     random_filename = str(random_uuid).replace("-", "")
-    
+
     # Append the extension to the random filename
     random_filename_with_extension = random_filename + extension
-    
+
     random_filepath = os.path.join("/tmp", random_filename_with_extension)
-    
+
     return random_filepath
 
 def get_file_extension(url):
