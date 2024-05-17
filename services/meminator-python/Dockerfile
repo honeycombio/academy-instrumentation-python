@@ -29,4 +29,4 @@ EXPOSE 10114
 ENV FLASK_APP=src/server.py
 
 # Command to run the Flask application
-CMD ["opentelemetry-instrument", "--metrics_exporter", "none", "flask", "run", "-p 10114", "--host=0.0.0.0"]
+CMD ["flask", "run", "-p 10114", "--host=0.0.0.0"]
