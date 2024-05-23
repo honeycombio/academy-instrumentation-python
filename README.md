@@ -25,7 +25,7 @@ Once you run the application, you can send traces to Honeycomb. Then you can pra
 
 ### GitPod setup
 
-Go to [Gitpod](https://honeycombio-academyinst-i0cuptb35ss.ws-us110.gitpod.io/) to open the repository.
+Go to [Gitpod](https://gitpod.io/#https://github.com/honeycombio/academy-instrumentation-python) to launch this project in Gitpod.
 
 Confirm the workspace creation. You can work in the browser with VS Code Browser or in your local code editor.
 
