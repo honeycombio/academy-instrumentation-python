@@ -79,6 +79,8 @@ def meminate():
         # subprocess_span.set_attribute("app.subprocess.returncode", result.returncode)
         # subprocess_span.set_attribute("app.subprocess.stdout", result.stdout)
         # subprocess_span.set_attribute("app.subprocess.stderr", result.stderr)
+        # if result.returncode != 0:
+        #     raise Exception("Subprocess failed with return code:", result.returncode)
 
     # Serve the modified image
     return send_file(
