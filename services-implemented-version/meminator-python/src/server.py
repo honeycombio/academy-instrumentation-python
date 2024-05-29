@@ -2,11 +2,6 @@ import os
 import subprocess
 from flask import Flask, jsonify, send_file, request
 from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import (
-    BatchSpanProcessor,
-    ConsoleSpanExporter,
-)
 
 from download import generate_random_filename, download_image
 from custom_span_processor import CustomSpanProcessor
@@ -25,7 +20,6 @@ def health():
     return jsonify(result)
 
 @app.route('/applyPhraseToPicture', methods=['POST', 'GET'])
-@tracer.start_as_current_span("/applyPhraseToPicture")
 def meminate():
     input = request.json or { "phrase": "I got you"}
     request_span = trace.get_current_span()
@@ -43,8 +37,6 @@ def meminate():
     if not os.path.exists(input_image_path):
         request_span.add_event("image_not_found", {"input_image_path": input_image_path, "imageUrl": imageUrl})
         return 'downloaded image file not found', 500
-
-    # Define the text to apply
 
     # Define the output image path
     output_image_path = generate_random_filename(input_image_path)
