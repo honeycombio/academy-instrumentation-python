@@ -3,16 +3,19 @@ import os
 import uuid
 import requests
 from opentelemetry import trace
+from opentelemetry.trace import Status, StatusCode
 
 tracer = trace.get_tracer("meminator-tracer")
 
 # uncomment this decoration to launch a new child span
 # @tracer.start_as_current_span("do_work")
+
+
 def download_image(url):
     current_span = trace.get_current_span()
 
     # Send a GET request to the URL
-    current_span.add_event("image_download_start", {"url": url,})
+    current_span.add_event("image_download_start", {"url": url, })
     try:
         response = requests.get(url)
         current_span.add_event("image_download_end",
@@ -47,6 +50,7 @@ def download_image(url):
         current_span.record_exception(e)
         return os.path.abspath('tmp/BusinessWitch.png')
 
+
 def generate_random_filename(input_filename):
     # Extract the extension from the input filename
     extension = get_file_extension(input_filename)
@@ -62,6 +66,7 @@ def generate_random_filename(input_filename):
     random_filepath = os.path.join("/tmp", random_filename_with_extension)
 
     return random_filepath
+
 
 def get_file_extension(url):
     # Split the URL by "." and get the last part

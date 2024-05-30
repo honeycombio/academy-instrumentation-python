@@ -5,7 +5,7 @@ from opentelemetry import trace
 from opentelemetry.trace import Status, StatusCode
 
 from download import generate_random_filename, download_image
-from custom_span_processor import CustomSpanProcessor
+# from custom_span_processor import CustomSpanProcessor
 
 # Acquire a tracer
 tracer = trace.get_tracer("meminator-tracer")
@@ -39,8 +39,9 @@ def meminate():
 
     # Check if the file exists
     if not os.path.exists(input_image_path):
-        request_span.add_event("image_not_found", {
-                               "input_image_path": input_image_path, "imageUrl": imageUrl})
+        request_span.add_event(
+            "image_not_found", {
+                "input_image_path": input_image_path, "imageUrl": imageUrl})
         request_span.set_status(Status(StatusCode.ERROR))
         return 'downloaded image file not found', 500
 
