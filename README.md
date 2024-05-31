@@ -27,7 +27,7 @@ Once you run the application, you can send traces to Honeycomb. Then you can pra
 
 Go to [Gitpod](https://gitpod.io/#https://github.com/honeycombio/academy-instrumentation-python) to launch this project in Gitpod.
 
-Confirm the workspace creation. You can work in the browser with VS Code Browser or in your local code editor. The default settings are acceptable. 
+Confirm the workspace creation. You can work in the browser with VS Code Browser or in your local code editor. The default settings are acceptable.
 
 Once you are in the code editor, run `docker compose up` in the code editor's terminal. To stop running the application, run `ctrl+c`. Then run `docker compose down` to remove the container.
 
@@ -66,6 +66,9 @@ BUCKET_NAME="random-pictures"
 
 OTEL_EXPORTER_OTLP_ENDPOINT="https://api.honeycomb.io:443/"
 OTEL_EXPORTER_OTLP_HEADERS="x-honeycomb-team=${HONEYCOMB_API_KEY}"
+
+# You can set this to "services-implemented-version" to run the answer-guide version
+SERVICE_PATH="services"
 ```
 
 If you don't have an API key handy, here is the [documentation](https://docs.honeycomb.io/get-started/configure/environments/manage-api-keys/#create-api-key).
