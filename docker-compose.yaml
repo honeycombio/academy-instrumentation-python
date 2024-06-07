@@ -5,7 +5,13 @@ services:
       dockerfile: Dockerfile
     image: backend-for-frontend-python:latest
     ports:
+<<<<<<< HEAD
       - "10115"
+=======
+      - "10115:10114"
+    env_file:
+      - .env
+>>>>>>> 23e302d (add sections and instructional README)
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
@@ -29,6 +35,8 @@ services:
       context: ${SERVICE_PATH:-services}/meminator-python
       dockerfile: Dockerfile
     image: meminator-python:latest
+    env_file:
+      - .env
     ports:
       - "10117"
     environment:
@@ -42,12 +50,36 @@ services:
       dockerfile: Dockerfile
     image: phrase-picker-python:latest
     ports:
+<<<<<<< HEAD
       - "10118"
+=======
+      - "10117:10114" # the outer ports can't be the same
+    env_file:
+      - .env
+>>>>>>> 23e302d (add sections and instructional README)
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=phrase-picker-python
 
+<<<<<<< HEAD
+=======
+  image-picker:
+    build:
+      context: ${SERVICE_PATH:-services}/image-picker-python
+      dockerfile: Dockerfile
+    image: image-picker-python:latest
+    ports:
+      - "10118:10114" # the outer ports can't be the same
+    env_file:
+      - .env
+    environment:
+      - BUCKET_NAME
+      - OTEL_EXPORTER_OTLP_ENDPOINT
+      - OTEL_EXPORTER_OTLP_HEADERS
+      - OTEL_SERVICE_NAME=image-picker-python
+
+>>>>>>> 23e302d (add sections and instructional README)
   web:
     build:
       context: ${SERVICE_PATH:-services}/web
@@ -58,6 +90,7 @@ services:
     # volumes: # uncomment this for faster development on the frontend
     #   - ./services/web/dist:/usr/share/nginx/html # Mount directory containing static files -- only do this for development
     ports:
+<<<<<<< HEAD
       - "10114:10114"
     depends_on:
       backend-for-frontend:
@@ -68,3 +101,10 @@ services:
         condition: service_started
       phrase-picker:
         condition: service_started
+=======
+      - "8080:80" # Expose port 8080 for Nginx
+    env_file:
+      - .env
+    environment:
+      - OTEL_SERVICE_NAME=web
+>>>>>>> 23e302d (add sections and instructional README)

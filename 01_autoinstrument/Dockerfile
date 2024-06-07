@@ -1,0 +1,1 @@
+/Users/sasha/Desktop/dev/workshops/academy-instrumentation-python/services/backend-for-frontend-python/Dockerfile

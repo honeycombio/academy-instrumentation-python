@@ -4,4 +4,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+<<<<<<< HEAD
 .venv/
+=======
+.venv/
+>>>>>>> 23e302d (add sections and instructional README)
