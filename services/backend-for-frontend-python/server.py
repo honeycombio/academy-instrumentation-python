@@ -4,6 +4,7 @@ from o11yday_lib import fetch_from_service
 app = Flask(__name__)
 # Route for health check
 @app.route('/health')
+@app.route('/')
 def health():
     return jsonify({"message": "I am here", "status_code": 0})
 
