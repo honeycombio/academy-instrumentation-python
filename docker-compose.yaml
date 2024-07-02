@@ -12,6 +12,8 @@ services:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=backend-for-frontend
+    volumes:
+      - ./services/backend-for-frontend-python:/app
 
   meminator:
     build:
@@ -71,3 +73,14 @@ services:
       - .env
     environment:
       - OTEL_SERVICE_NAME=web
+
+  collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    command: ["--config", "/etc/otel-collector-config.yaml"]
+    environment:
+      - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
