@@ -2,7 +2,8 @@
 
 source ../../.env # put your Honeycomb API key in this file
 
-export OTEL_EXPORTER_OTLP_ENDPOINT="https://api.honeycomb.io" # US instance
+export OTEL_EXPORTER_OTLP_ENDPOINT="http://collector:4318"
+# export OTEL_EXPORTER_OTLP_ENDPOINT="https://api.honeycomb.io" # US instance
 #export OTEL_EXPORTER_OTLP_ENDPOINT="https://api.eu1.honeycomb.io" # EU instance
 export OTEL_EXPORTER_OTLP_HEADERS="x-honeycomb-team=${HONEYCOMB_API_KEY}"
 export OTEL_SERVICE_NAME="meminator-python"
