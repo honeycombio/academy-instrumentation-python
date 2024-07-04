@@ -53,6 +53,13 @@ child_span = tracer.start_span("child-span", context=ctx2) # We use the new cont
 child_span.end()
 ```
 
+6. Navigate back to the project root and build the app
+
+```shell
+cd ..
+./run
+```
+
 This code allows us to see a parent-child relationship created between span and child_span that is propagated through the Context API!
 
 Look at the added spans in Honeycomb.
