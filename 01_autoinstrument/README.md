@@ -34,13 +34,26 @@ opentelemetry-bootstrap -a install
 pip freeze -l > requirements.txt
 ```
 
-4. Modify the command to run the app in the Dockerfile:
+4. Modify `server.py` to include the following import:
+
+```python
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+```
+
+Then add the instrumentor to the app after instantiating the WSGI app:
+
+```python
+app = Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+```
+
+5. Modify the command to run the app in the Dockerfile:
 
 ```Dockerfile
 CMD ["opentelemetry-instrument", "flask", "run", "-p 10114", "--host=0.0.0.0"]
 ```
 
-5. Navigate back to the project root and build the app
+6. Navigate back to the project root and build the app
 
 ```shell
 cd ..
