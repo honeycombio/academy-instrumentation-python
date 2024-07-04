@@ -1,4 +1,6 @@
-from flask import Flask, jsonify, Response
+import time
+
+from flask import Flask, Response, jsonify
 from o11yday_lib import fetch_from_service
 
 app = Flask(__name__)
