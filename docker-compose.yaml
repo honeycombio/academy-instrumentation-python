@@ -6,16 +6,22 @@ services:
     image: backend-for-frontend-python:latest
     ports:
       - "10115:10114"
+    env_file:
+      - .env
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=backend-for-frontend
+    volumes:
+      - ./services/backend-for-frontend-python:/app
 
   meminator:
     build:
       context: ${SERVICE_PATH:-services}/meminator-python
       dockerfile: Dockerfile
     image: meminator-python:latest
+    env_file:
+      - .env
     ports:
       - "10116:10114" # they can't be the same
     environment:
@@ -30,6 +36,8 @@ services:
     image: phrase-picker-python:latest
     ports:
       - "10117:10114" # the outer ports can't be the same
+    env_file:
+      - .env
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
@@ -42,6 +50,8 @@ services:
     image: image-picker-python:latest
     ports:
       - "10118:10114" # the outer ports can't be the same
+    env_file:
+      - .env
     environment:
       - BUCKET_NAME
       - OTEL_EXPORTER_OTLP_ENDPOINT
@@ -59,3 +69,18 @@ services:
     #   - ./services/web/dist:/usr/share/nginx/html # Mount directory containing static files -- only do this for development
     ports:
       - "8080:80" # Expose port 8080 for Nginx
+    env_file:
+      - .env
+    environment:
+      - OTEL_SERVICE_NAME=web
+
+  collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    command: ["--config", "/etc/otel-collector-config.yaml"]
+    environment:
+      - HONEYCOMB_API_KEY=${HONEYCOMB_API_KEY}
