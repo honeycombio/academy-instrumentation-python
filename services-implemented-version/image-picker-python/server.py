@@ -81,4 +81,4 @@ def choose(array):
     return random.choice(array)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=10116)
+    app.run(port=10116)
