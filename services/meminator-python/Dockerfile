@@ -24,9 +24,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port to the outside world
-EXPOSE 10114
+EXPOSE 10117
 
 ENV FLASK_APP=src/server.py
 
 # Command to run the Flask application
-CMD ["flask", "run", "-p 10114", "--host=0.0.0.0"]
+CMD ["flask", "run", "-p 10117", "--host=0.0.0.0"]

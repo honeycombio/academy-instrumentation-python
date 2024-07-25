@@ -1,9 +1,9 @@
 import requests
 
 SERVICES = {
-    'meminator': 'http://meminator:10114/applyPhraseToPicture', 
-    'phrase-picker': 'http://phrase-picker:10114/phrase',
-    'image-picker': 'http://image-picker:10114/imageUrl',
+    'image-picker': 'http://image-picker:10116/imageUrl',
+    'meminator': 'http://meminator:10117/applyPhraseToPicture', 
+    'phrase-picker': 'http://phrase-picker:10118/phrase',
 }
 
 def fetch_from_service(service, method='GET', body=None):
