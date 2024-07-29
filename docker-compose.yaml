@@ -5,11 +5,24 @@ services:
       dockerfile: Dockerfile
     image: backend-for-frontend-python:latest
     ports:
-      - "10115:10114"
+      - "10115"
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=backend-for-frontend
+
+  image-picker:
+    build:
+      context: ${SERVICE_PATH:-services}/image-picker-python
+      dockerfile: Dockerfile
+    image: image-picker-python:latest
+    ports:
+      - "10116"
+    environment:
+      - BUCKET_NAME
+      - OTEL_EXPORTER_OTLP_ENDPOINT
+      - OTEL_EXPORTER_OTLP_HEADERS
+      - OTEL_SERVICE_NAME=image-picker-python
 
   meminator:
     build:
@@ -17,7 +30,7 @@ services:
       dockerfile: Dockerfile
     image: meminator-python:latest
     ports:
-      - "10116:10114" # they can't be the same
+      - "10117"
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
@@ -29,24 +42,11 @@ services:
       dockerfile: Dockerfile
     image: phrase-picker-python:latest
     ports:
-      - "10117:10114" # the outer ports can't be the same
+      - "10118"
     environment:
       - OTEL_EXPORTER_OTLP_ENDPOINT
       - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=phrase-picker-python
-
-  image-picker:
-    build:
-      context: ${SERVICE_PATH:-services}/image-picker-python
-      dockerfile: Dockerfile
-    image: image-picker-python:latest
-    ports:
-      - "10118:10114" # the outer ports can't be the same
-    environment:
-      - BUCKET_NAME
-      - OTEL_EXPORTER_OTLP_ENDPOINT
-      - OTEL_EXPORTER_OTLP_HEADERS
-      - OTEL_SERVICE_NAME=image-picker-python
 
   web:
     build:
@@ -58,4 +58,13 @@ services:
     # volumes: # uncomment this for faster development on the frontend
     #   - ./services/web/dist:/usr/share/nginx/html # Mount directory containing static files -- only do this for development
     ports:
-      - "8080:80" # Expose port 8080 for Nginx
+      - "10114:10114"
+    depends_on:
+      backend-for-frontend:
+        condition: service_started
+      image-picker:
+        condition: service_started
+      meminator:
+        condition: service_started
+      phrase-picker:
+        condition: service_started

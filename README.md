@@ -1,7 +1,6 @@
-
 # Honeycomb Academy: Sample Meminator App
 
-***This is a demo app, don't run it in production***
+**_This is a demo app, don't run it in production_**
 
 This contains a sample application for use in Honeycomb Academy lab activities. This app has 4 services.
 
@@ -17,13 +16,11 @@ Hello! Welcome to the **Instrumenting with Python** course lab.
 4. See what the traces look like.
 5. Improve the traces.
 
-
 ## Running the application
 
 To run this app, you can use GitPod or Codespaces.
 
 Once you run the application, you can send traces to Honeycomb. Then you can practice improving the instrumentation for better observability.
-
 
 ### GitPod setup
 
@@ -33,13 +30,11 @@ Confirm the workspace creation. You can work in the browser with VS Code Browser
 
 Once you are in the code editor, run `docker compose up` in the code editor's terminal. To stop running the application, run `ctrl+c`. Then run `docker compose down` to remove the container.
 
-
 ### Codespaces setup
 
 Open the repository on GitHub. Open the `<> Code` dropdown down menu.
 
 Select the `Codespaces` tab. Create a codespace on main.
-
 
 ### Local development setup
 
@@ -54,11 +49,13 @@ git clone https://github.com/honeycombio/academy-instrumentation-python.git
 Install Docker: https://docs.docker.com/get-docker/
 
 Create a `.env` file from the example:
+
 ```bash
 cp example.env .env
 ```
 
 And update the `.env` file with your Honeycomb API key:
+
 ```bash
 HONEYCOMB_API_KEY="your-api-key"
 
@@ -75,7 +72,6 @@ SERVICE_PATH="services"
 
 If you don't have an API key handy, here is the [documentation](https://docs.honeycomb.io/get-started/configure/environments/manage-api-keys/#create-api-key).
 
-
 ### Run the app
 
 `./run`
@@ -84,7 +80,7 @@ If you don't have an API key handy, here is the [documentation](https://docs.hon
 
 Access the app:
 
-[http://localhost:8080]()
+[http://localhost:10114]()
 
 After making changes to a service, you can tell it to rebuild just that one:
 
@@ -92,6 +88,6 @@ After making changes to a service, you can tell it to rebuild just that one:
 
 ### Try it out
 
-Visit [http://localhost:8080]()
+Visit [http://localhost:10114]()
 
 Click the "GO" button. Then wait.

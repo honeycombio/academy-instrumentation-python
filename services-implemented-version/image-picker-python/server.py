@@ -8,7 +8,6 @@ filenames = [
 "Angrybird.JPG",
 "Arco&Tub.png",
 "IMG_9343.jpg",
-"heatmap.png",
 "angry-lemon-ufo.JPG",
 "austintiara4.png",
 "baby-geese.jpg",
@@ -18,7 +17,6 @@ filenames = [
 "busted-light.jpg",
 "cat-glowing-eyes.JPG",
 "cat-on-leash.JPG",
-"cat-with-bowtie.heic",
 "cat.jpg",
 "clementine.png",
 "cow-peeking.jpg",
@@ -37,11 +35,13 @@ filenames = [
 "jean-and-statue.png",
 "jessitron.png",
 "keys-drying.jpg",
+"leftridge.png",
 "lime-on-soap-dispenser.jpg",
 "loki-closeup.jpg",
 "lynia.png",
 "ninguang-at-work.png",
 "paul-r-allen.png",
+"pile-of-cars.png",
 "please.png",
 "roswell-nose.jpg",
 "roswell.JPG",
@@ -81,4 +81,4 @@ def choose(array):
     return random.choice(array)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=10114)
+    app.run(port=10116)
