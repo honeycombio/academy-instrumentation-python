@@ -6,9 +6,9 @@ services:
     image: backend-for-frontend-python:latest
     ports:
       - "10115"
+    env_file:
+      - .env
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT
-      - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=backend-for-frontend
 
   image-picker:
@@ -18,10 +18,10 @@ services:
     image: image-picker-python:latest
     ports:
       - "10116"
+    env_file:
+      - .env
     environment:
       - BUCKET_NAME
-      - OTEL_EXPORTER_OTLP_ENDPOINT
-      - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=image-picker-python
 
   meminator:
@@ -31,9 +31,9 @@ services:
     image: meminator-python:latest
     ports:
       - "10117"
+    env_file:
+      - .env
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT
-      - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=meminator-python
 
   phrase-picker:
@@ -43,9 +43,9 @@ services:
     image: phrase-picker-python:latest
     ports:
       - "10118"
+    env_file:
+      - .env
     environment:
-      - OTEL_EXPORTER_OTLP_ENDPOINT
-      - OTEL_EXPORTER_OTLP_HEADERS
       - OTEL_SERVICE_NAME=phrase-picker-python
 
   web:
