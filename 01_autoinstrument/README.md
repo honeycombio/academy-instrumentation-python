@@ -64,3 +64,7 @@ Save and close the file.
 cd ..
 ./run
 ```
+
+7. Finally, visit the app at [http://localhost:10114](http://localhost:10114) and interact with the app. Next, navigate to Honeycomb. You should see traces in the Honeycomb UI.
+
+![image](./view_trace.gif)
